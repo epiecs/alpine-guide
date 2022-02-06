@@ -326,9 +326,19 @@ stop() {
 
 Dit is de absolute basis die je nodig hebt om zelf een service script te schrijven. Het script begint met de standaard `#!/sbin/openrc-run` shebang. Deze construct zorgt ervoor dat ons script met dit command wordt uitgevoerd.
 
-De `depend` functie is om aan te geven wat deze service nodig heeft om te werken. In dit geval geven we aan dat deze service `localmount` en `net` nodig heeft. Deze 2 services worden gebruikt om het file system te mounten en networking te starten. Deze zijn niet verplicht maar meestal een goeie basis.
+De `depend` functie is om aan te geven wat deze service nodig heeft om te werken. In dit geval geven we aan dat deze service `localmount` en `net` nodig heeft. We gebruiken hiervoor het keyword `need`. Deze 2 services worden gebruikt om het file system te mounten en networking te starten. Deze zijn niet verplicht maar meestal een goeie basis.
 
-Er zijn nog veel meer keywords zoals `use`, `want`, `after`, `before`,... Een overzicht kan je vinden op https://manpages.org/openrc-run/8 onder de sectie **"Dependencies"**.
+Je kan eender welke service naam gebruiken achter een keyword.
+
+Er zijn nog veel meer keywords zoals `use`, `want`, `after`, `before`,... Een overzicht kan je vinden op https://manpages.org/openrc-run/8 onder de sectie **"Dependencies"**. De belangrijkste keywords voor basis scripts zijn:
+
+| Keyword  | Description                                                  |
+| -------- | ------------------------------------------------------------ |
+| `need`   | Hard dependency. De service kan niet starten zonder de aangegeven service |
+| `use`    | Soft dependency. Indien de aangegeven service(s) zich in hetzelfde runlevel bevinden worden deze ook gestart |
+| `want`   | Soft dependency. Probeert de services te starten en het maakt niet uit in welk runlevel de service(s) zich bevinden. |
+| `after`  | Start onze service na de opgegeven service(s).               |
+| `before` | Start onze service voor de opgegeven service(s).             |
 
 Er is ook een `start` en een `stop` functie voorzien voor onze service te starten en te stoppen. Hier in plaats je alle commando's die nodig zijn om je service te starten en stoppen. Zie wel dat je altijd het volledige path mee geeft van elk command. Indien je twijfelt waar een command zich bevindt kan je altijd gebruik maken van het `which`  command. Bijvoorbeeld `which echo`.
 
