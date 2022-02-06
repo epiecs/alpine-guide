@@ -729,7 +729,11 @@ rc-update add wgdashboard
 
 ### UFW
 
-Wanneer je een server opzet die bereikbaar is via het internet (eigenlijk doe je dit best altijd) maak je gebruik van een firewall. Een tool om makkelijk met de linux firewall te werken is UFW (Uncomplicated FireWall).
+Wanneer je een server opzet die bereikbaar is via het internet (eigenlijk doe je dit best altijd) maak je gebruik van een firewall. Een tool om makkelijk met de linux firewall te werken is UFW (Uncomplicated FireWall). We installeren deze eerst:
+
+```bash
+apk add ufw
+```
 
 Onze server maakt gebruik van de volgende poorten en protocollen:
 
