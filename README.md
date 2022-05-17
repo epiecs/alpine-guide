@@ -532,7 +532,12 @@ We gaan gebruik maken van iptables als firewall voor ons systeem. Dit is een sim
 Je installeert iptables en zorgt er voor dat deze mee opstart met Alpine:
 
 ```bash
-apk add iptables
+apk add iptables ip6tables
+
+modprobe -v ip_tables
+modprobe -v ip6_tables
+modprobe -v iptable_nat
+
 rc-service iptables save
 rc-service iptables start
 rc-update add iptables
@@ -645,6 +650,7 @@ We beginnen met alle dependencies te installeren:
 ```bash
 apk update ; apk upgrade
 apk add python3 py3-pip py3-qrcode py3-cffi git
+python3 -m ensurepip
 
 pip3 install --upgrade pip setuptools wheel
 ```
